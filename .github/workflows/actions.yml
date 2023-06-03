@@ -1,8 +1,19 @@
 name: Actions workflow
 
 on: 
-  repository_dispatch:
-    types:  [build]
+  #repository_dispatch:
+  #  types:  [build]
+  push:
+    branches:
+      - master
+      - 'feature/*' # matches with feature/featA, feature/featB, doesnt match feature/fear/a
+      - 'feature/**' # matches with feature/feat/a
+      - '!feature/featC'
+    tags:
+      - v1.*
+    paths:
+      - "**.js"
+      - "!filename.js"
 
 jobs:
   run-github-actions:
